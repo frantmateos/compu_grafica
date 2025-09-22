@@ -1,5 +1,8 @@
 from graphics import Graphics
 import glm
+import moderngl
+import numpy as np
+
 
 class Scene:
     def __init__(self, ctx, camera):
@@ -16,7 +19,17 @@ class Scene:
         self.graphics[obj.name] = Graphics(self.ctx, shader_program, obj.vertices, obj.indices)
 
     def render(self):
+        self.ctx.enable(moderngl.DEPTH_TEST)
+
+        view = self.camera.get_view_matrix()
+        projection = self.camera.get_perspective_matrix()
+
         for obj in self.objects:
+            model = obj.get_model_matrix()
+            mvp = projection * view * model
+
+            self.graphics[obj.name].program["Mvp"].write(np.array(mvp.to_list(), dtype='f4').tobytes())
+
             self.graphics[obj.name].vao.render()
 
     def on_resize(self, width, height):

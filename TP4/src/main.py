@@ -8,10 +8,10 @@ from scene import Scene
 window = Window(800, 600, "Basic Graphic Engine")
 
 # Shader
-shader_program = ShaderProgram(window.ctx, 'shaders/basic.vert', 'shaders/basic.frag')
+shader_program = ShaderProgram(window.ctx, 'TP4/shaders/basic.vert', 'TP4/shaders/basic.frag')
 
 # Cámara
-camera = Camera((0, 0, 6), (0, 0, 0), (0, 1, 0), 45, window.width / window.height, 0.1, 100.0)
+camera = Camera((6, 6, 6), (3, 3, 3), (0, 4, 0), 45, window.width / window.height, 0.1, 100.0)
 
 # Objetos
 cube1 = Cube((-2, 0, 0), (0, 45, 0), (1, 1, 1), name="Cube1")

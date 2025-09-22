@@ -8,6 +8,7 @@ class Graphics:
         # IBO: Index Buffer Object → almacena los índices para dibujar los vértices
         # VAO: Vertex Array Object → combina VBO e IBO y define el formato de los datos
         self.vbo = ctx.buffer(vertices.tobytes())
+        self.program = shader_program.prog 
         self.ibo = ctx.buffer(indices.tobytes())
         self.vao = ctx.vertex_array(shader_program.prog, [
             (self.vbo, '3f 3f', 'in_pos', 'in_color')
